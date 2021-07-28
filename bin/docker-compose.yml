@@ -18,6 +18,9 @@ services:
     image: shortcut:1.0.0
     ports:
       - 7999:9527
+    volumes:
+      - ~/docker/shortcut/bin:/usr/shortcut/bin
+      - ~/docker/shortcut/logs:/usr/shortcut/logs
     networks:
       my-bridge:
         ipv4_address: 172.18.0.109

@@ -24,4 +24,4 @@ ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/app.jar
 ENTRYPOINT ["/bin/bash","/usr/shortcut/bin/start.sh"]
 
 # 打包命令
-# docker build -t adms-server /home/adms/adms_code/ADMS
+# docker build -t shortcut:1.0.0 ~/adms_code/shortcut
