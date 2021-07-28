@@ -1,7 +1,9 @@
 package com.gravel.shortcut.controller;
 
 import com.gravel.shortcut.service.UrlConvertService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -34,6 +36,9 @@ public class RedirectController {
     public RedirectView redirect(HttpServletRequest request, HttpServletResponse response) {
         String shortcut = request.getServletPath().substring(1);
         String url = urlConvertService.revertUrl(shortcut);
+        if (StringUtils.isEmpty(url)) {
+            url = "https://www.hibenz.cn";
+        }
         return new RedirectView(url);
     }
 
