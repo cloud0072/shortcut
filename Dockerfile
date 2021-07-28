@@ -14,16 +14,14 @@ EXPOSE 9527
 # 其效果是在主机 /var/lib/docker 目录下创建了一个临时文件，并链接到容器的/tmp
 # VOLUME /tmp
 
-# 将jar包添加到容器中并更名为ruoyi-admin.jar
-ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
+# 将jar包添加到容器中并更名为app.jar
+ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/app.jar
 
 # 运行jar包
-#RUN bash -c 'touch /usr/adms-server/bin/ruoyi-admin.jar'
+#RUN bash -c 'touch /usr/adms-server/bin/app.jar'
 
 # 运行参数
 ENTRYPOINT ["/bin/bash","/usr/shortcut/bin/start.sh"]
-# docker run -e SPRING_PROFILES=common,dev,master
-# ENTRYPOINT ["nohup","java","-Djava.security.egd=file:/dev/./urandom","-jar","/usr/adms-server/bin/ruoyi-admin.jar","--spring.profiles.active=${SPRING_PROFILES}","> ${NOHUP_FILE} 2>&1 & tailf ${NOHUP_FILE}"]
 
 # 打包命令
 # docker build -t adms-server /home/adms/adms_code/ADMS
