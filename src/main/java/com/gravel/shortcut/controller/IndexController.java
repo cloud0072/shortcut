@@ -25,6 +25,11 @@ public class IndexController {
     @Value("${common.domain}")
     private String domain;
 
+    @GetMapping(value = "/")
+    public String home() {
+        return "redirect:https://www.yunbenz.com";
+    }
+
     @GetMapping(value = "/index")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
