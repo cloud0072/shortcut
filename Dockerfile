@@ -15,10 +15,10 @@ EXPOSE 9527
 # VOLUME /tmp
 
 # 将jar包添加到容器中并更名为app.jar
-ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/app.jar
+ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
 
 # 运行jar包
-#RUN bash -c 'touch /usr/adms-server/bin/app.jar'
+#RUN bash -c 'touch /usr/adms-server/bin/shortcut-1.0.0.jar'
 
 # 运行参数
 ENTRYPOINT ["/bin/bash","/usr/shortcut/bin/start.sh"]
