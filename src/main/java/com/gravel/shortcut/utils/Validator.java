@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private final static String URL_REGEX = "(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?";
-    private final static String YUN_BENZ_REGEX = "^https://([a-z.]*)(yunbenz.com|hibenz.cn)([\\w#!:.?+=&%@!\\-\\/]*)";
+    private final static String YUN_BENZ_REGEX = "^https://([a-z.\\-]*)(yunbenz.com|hibenz.cn)([\\w#!:.?+=&%@!\\-\\/]*)";
 
     /**
      * 验证URL地址
