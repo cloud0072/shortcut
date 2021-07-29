@@ -36,9 +36,6 @@ public class RedirectController {
     public RedirectView redirect(HttpServletRequest request, HttpServletResponse response) {
         String shortcut = request.getServletPath().substring(1);
         String url = urlConvertService.revertUrl(shortcut);
-        if (StringUtils.isEmpty(url)) {
-            url = "https://www.hibenz.cn";
-        }
         return new RedirectView(url);
     }
 
