@@ -4,13 +4,16 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.gravel.shortcut.configuration.AsyncJob;
 import com.gravel.shortcut.configuration.bloom.BloomFilter;
+import com.gravel.shortcut.service.GenNumService;
 import com.gravel.shortcut.service.UrlConvertService;
 import com.gravel.shortcut.utils.NumericConvertUtils;
 import com.gravel.shortcut.utils.SnowFlake;
 import com.gravel.shortcut.utils.Validator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 
@@ -29,13 +32,14 @@ public class UrlConvertServiceImpl implements UrlConvertService {
     private RedisTemplate<String, String> redisTemplate;
 
     @Resource
-    private SnowFlake idGenerator;
-
-    @Resource
     private BloomFilter bloomFilter;
 
     @Resource
     private AsyncJob asyncJob;
+
+    @Qualifier("RandomGenImpl")
+    @Resource
+    private GenNumService genNumService;
 
     /**
      * 得到短地址URL
@@ -55,16 +59,28 @@ public class UrlConvertServiceImpl implements UrlConvertService {
                 return shortCut;
             }
         }
-        // 直接生成一个新的短地址，并存入缓存
-        long nextId = idGenerator.nextId();
-        // 转换为62进制
-        shortCut = NumericConvertUtils.convertTo(nextId, 62);
+        // 生成一个Id
+        shortCut = genShortCut();
         log.info("转换成功----->[shortCut]={}", shortCut);
         // 将短网址和短域名异步添加到布隆过滤器中，提升响应速度
         asyncJob.add2RedisAndBloomFilter(shortCut, url);
         // 存在的话直接返回
 
         return shortCut;
+    }
+
+    private String genShortCut() {
+        String shortCut;
+        // 直接生成一个新的短地址，并存入缓存
+        long nextId = genNumService.genNum();
+        // 转换为62进制
+        shortCut = NumericConvertUtils.convertTo(nextId, 62);
+        String url = redisTemplate.opsForValue().get(shortCut);
+        if (StringUtils.isEmpty(url)) {
+            return shortCut;
+        } else {
+            return genShortCut();
+        }
     }
 
     /**

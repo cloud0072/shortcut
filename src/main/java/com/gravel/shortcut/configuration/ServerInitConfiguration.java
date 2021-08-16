@@ -37,7 +37,6 @@ public class ServerInitConfiguration implements ApplicationListener<WebServerIni
         this.serverPort = event.getWebServer().getPort();
     }
 
-
     @Bean("idGenerator")
     SnowFlake snowFlake(){
         return new SnowFlake(219);

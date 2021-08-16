@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName IndexController
@@ -26,8 +28,8 @@ public class IndexController {
     private String domain;
 
     @GetMapping(value = "/")
-    public String home() {
-        return "redirect:https://www.yunbenz.com";
+    public RedirectView home(HttpServletRequest request) {
+        return new RedirectView("https://www.yunbenz.com");
     }
 
     @GetMapping(value = "/index")
