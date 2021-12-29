@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component("RandomGenImpl")
+@Component("RandomGen")
 public class RandomGenImpl implements GenNumService {
 
     private static final Random random = new Random();

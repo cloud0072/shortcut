@@ -37,7 +37,7 @@ public class UrlConvertServiceImpl implements UrlConvertService {
     @Resource
     private AsyncJob asyncJob;
 
-    @Qualifier("RandomGenImpl")
+    @Qualifier("SnowFlakeGen")
     @Resource
     private GenNumService genNumService;
 
@@ -97,4 +97,41 @@ public class UrlConvertServiceImpl implements UrlConvertService {
         log.info("还原成功----->[真实Url]={}", url);
         return url;
     }
+
+    /**
+     * 参数转换
+     * @param param
+     * @return
+     */
+    @Override
+    public String encode(String param) {
+//        Preconditions.checkArgument(Validator.checkUrl(url), "[url]格式不合法！url={}", url);
+        log.info("转换开始----->[param]={}", param);
+        String key;
+        // 如果布隆过滤器能命中，则直接返回 对应的value
+        if (bloomFilter.includeByBloomFilter(param)) {
+            key = redisTemplate.opsForValue().get(param);
+            if (!Strings.isNullOrEmpty(key)) {
+                log.info("布隆过滤器命中----->[key]={}", key);
+                return key;
+            }
+        }
+        // 生成一个Id
+        key = genShortCut();
+        log.info("转换成功----->[key]={}", key);
+        // 将短网址和短域名异步添加到布隆过滤器中，提升响应速度
+        asyncJob.add2RedisAndBloomFilter(key, param);
+        // 存在的话直接返回
+
+        return key;
+    }
+
+    @Override
+    public String decode(String key) {
+        log.info("还原开始----->[key]={}", key);
+        String param = redisTemplate.opsForValue().get(key);
+        log.info("还原成功----->[param]={}", param);
+        return param;
+    }
+
 }

@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * @ClassName MainController
@@ -28,6 +31,10 @@ public class MainController {
     @Resource
     private UrlConvertService urlConvertService;
 
+    @GetMapping(value = "/qrcode", produces = MediaType.IMAGE_JPEG_VALUE)
+    public BufferedImage getImage(@RequestParam String url) throws IOException, WriterException {
+        return QRcodeUtils.QREncode(url);
+    }
     /**
      * 传入url 返回 转换成功的url
      *
@@ -39,15 +46,38 @@ public class MainController {
         return ResultGenerator.genSuccessResult(urlConvertService.convertUrl(url));
     }
 
-    @GetMapping(value = "/qrcode", produces = MediaType.IMAGE_JPEG_VALUE)
-    public BufferedImage getImage(@RequestParam String url) throws IOException, WriterException {
-        return QRcodeUtils.QREncode(url);
-    }
-
     @PostMapping("/revert")
     public Result<String> revertUrl(@RequestParam String shortUrl) {
         return ResultGenerator.genSuccessResult(urlConvertService.revertUrl(shortUrl));
+    }
 
+    /**
+     * 完整参数
+     * @param request
+     * @return
+     */
+    @PostMapping("/encode")
+    public Result<String> encode(HttpServletRequest request) {
+        Enumeration<String> names = request.getParameterNames();
+        StringBuilder param = new StringBuilder();
+        while (names.hasMoreElements()) {
+            String key = names.nextElement();
+            if (param.indexOf("=") > 0) {
+                param.append("&");
+            }
+            param.append(key).append("=").append(request.getParameter(key));
+        }
+        return ResultGenerator.genSuccessResult(urlConvertService.encode(param.toString()));
+    }
+
+    /**
+     * 短参数
+     * @param key
+     * @return
+     */
+    @PostMapping("/decode")
+    public Result<String> decode(@RequestParam String key) {
+        return ResultGenerator.genSuccessResult(urlConvertService.decode(key));
     }
 
 }

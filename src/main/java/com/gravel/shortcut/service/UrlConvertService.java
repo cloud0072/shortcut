@@ -25,4 +25,7 @@ public interface UrlConvertService {
      */
     String revertUrl(String shortUrl);
 
+    String encode(String param);
+
+    String decode(String key);
 }

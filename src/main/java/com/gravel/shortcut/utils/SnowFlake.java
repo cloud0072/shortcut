@@ -12,7 +12,8 @@ public class SnowFlake {
     /**
      * 开始时间戳，这样可以减少id长度
      */
-    private final static long START_STAMP = 1580630554000L;
+    private final static long START_STAMP = 1390000000000L;
+
     /**
      * 每一部分占用的位数
      */
@@ -36,7 +37,7 @@ public class SnowFlake {
     /**
      * 所在机器的标识
      */
-    private long workerId;
+    private final long workerId;
     /**
      * 序列号
      */

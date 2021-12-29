@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class AppTests {
 
-//	@Qualifier("RandomGenImpl")
+//	@Qualifier("RandomGen")
 //	@Resource
 //	private GenNumService randomGen;
 //
