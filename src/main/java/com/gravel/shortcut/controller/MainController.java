@@ -6,10 +6,7 @@ import com.gravel.shortcut.domain.ResultGenerator;
 import com.gravel.shortcut.service.UrlConvertService;
 import com.gravel.shortcut.utils.QRcodeUtils;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +39,7 @@ public class MainController {
      * @return
      */
     @PostMapping("/convert")
-    public Result<String> convertUrl(@RequestParam String url) {
+    public Result<String> convertUrl(@RequestBody String url) {
         return ResultGenerator.genSuccessResult(urlConvertService.convertUrl(url));
     }
 
