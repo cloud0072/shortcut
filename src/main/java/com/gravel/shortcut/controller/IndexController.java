@@ -26,16 +26,18 @@ public class IndexController {
 
     @Value("${common.domain}")
     private String domain;
+    @Value("${common.main-address}")
+    private String mainAddress;
 
     @GetMapping(value = "/")
     public RedirectView home(HttpServletRequest request) {
-        return new RedirectView("https://www.yunbenz.com");
+        return new RedirectView(mainAddress);
     }
 
     @GetMapping(value = "/index")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
-        mv.addObject("domain", StringUtils.isEmpty(domain)?serverInitConfiguration.getUrl():domain);
+        mv.addObject("domain", StringUtils.isEmpty(domain) ? serverInitConfiguration.getUrl() : domain);
         return mv;
     }
 }

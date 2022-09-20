@@ -18,4 +18,5 @@ spring:
 
 # 配置域名，如果没有配，则默认是本地ip
 common:
-   domain: https://i.hnbenz.cn
+   domain: https://i.hibenz.cn
+   main-address: https://n3.lshauto.com.cn/
