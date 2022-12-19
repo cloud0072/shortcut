@@ -15,7 +15,9 @@ EXPOSE 9527
 # VOLUME /tmp
 
 # 将jar包添加到容器中并更名为app.jar
-ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
+ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
+ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
+ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
 
 # 运行jar包
 #RUN bash -c 'touch /usr/adms-server/bin/shortcut-1.0.0.jar'
@@ -24,4 +26,4 @@ ADD target/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
 ENTRYPOINT ["/bin/bash","/usr/shortcut/bin/start.sh"]
 
 # 打包命令
-# docker build -t shortcut:1.0.0 ~/adms_code/shortcut
+# docker build -t shortcut:1.0.0 ~/docker/shortcut
