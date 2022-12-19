@@ -1,9 +1,10 @@
 package com.gravel.shortcut;
 
+import com.gravel.shortcut.utils.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class AppTests {
 
 //	@Qualifier("RandomGen")
@@ -22,6 +23,11 @@ class AppTests {
 
     @Test
     void contextLoads() {
+
+        boolean flag = Validator.checkUrl("https://www.hnlongyun.com/report/link/:home:HBMS:Used_cars:CRM:活动客户明细表_UCLY");
+
+        System.out.println(flag);
+
     }
 
 }
