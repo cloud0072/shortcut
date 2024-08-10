@@ -11,8 +11,9 @@ services:
     ports:
       - 9528:9528
     volumes:
-      - ~/docker/shortcut:/usr/shortcut
-      - ~/docker/shortcut/logs:/usr/shortcut/logs
+      - ~/docker/shortcut/bin/start.sh:/app/bin/start.sh
+      - ~/docker/shortcut/bin/shortcut.jar:/app/bin/shortcut.jar
+      - ~/docker/shortcut/logs/:/app/logs/
     logging:
       options:
         max-size: "128M"
