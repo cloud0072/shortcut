@@ -33,7 +33,8 @@
 <h1 class="mid">短地址转换</h1>
 <div id="preurl" style="display: none" th:text="${domain}"></div>
 <div class="mid">
-    <div><input id='url'/>
+    <div>
+        <input id='url'/>
         <button onclick='convert()'>转换为短地址</button>
     </div>
     <div id='convertRepoDiv' style="display: none;"><a id="convertRepo" target="_blank"></a></div>
@@ -41,10 +42,13 @@
         <img id="convertImage" src="" alt="图片"/>
     </div>
 
-    <div><input id="shortUrl"/>
+    <div>
+        <input id="shortUrl"/>
         <button id=“revert” onclick='revert()'>还原网址</button>
     </div>
-    <div id='revertRepoDiv' style="display: none;"><a id="revertRepo" target="_blank"></a></div>
+    <div id='revertRepoDiv' style="display: none;">
+        <a id="revertRepo" target="_blank"></a>
+    </div>
     <div id='revertImageDiv' style="display: none;">
         <img id="revertImage" src="" alt="图片"/>
     </div>
@@ -108,6 +112,5 @@
         };
         xhr.send('shortUrl=' + shortUrl);
     }
-
 </script>
 </html>

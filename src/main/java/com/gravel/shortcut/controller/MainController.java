@@ -32,6 +32,7 @@ public class MainController {
     public BufferedImage getImage(@RequestParam String url) throws IOException, WriterException {
         return QRcodeUtils.QREncode(url);
     }
+
     /**
      * 传入url 返回 转换成功的url
      *

@@ -2,8 +2,9 @@ server:
   port: 9527
 spring:
   redis:
-    host: 172.18.0.111
-    port: 6379
+    host: 10.150.64.10
+    # 端口 docker-redis 6378
+    port: 6378
     # 密码 没有则可以不填
     password: foob@78921
     # 如果使用的jedis 则将lettuce改成jedis即可
@@ -18,5 +19,4 @@ spring:
 
 # 配置域名，如果没有配，则默认是本地ip
 common:
-   domain: https://i.hibenz.cn
-   main-address: https://n3.lshauto.com.cn/
+  domain: https://i.hibenz.cn

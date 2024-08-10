@@ -24,7 +24,7 @@ class AppTests {
     @Test
     void contextLoads() {
 
-        boolean flag = Validator.checkUrl("https://www.hnlongyun.com/report/link/:home:HBMS:Used_cars:CRM:活动客户明细表_UCLY");
+        boolean flag = Validator.checkUrl("https%3A%2F%2Fwww.hibnenz.cn%2Freport%2Flink%2F%3Ahome%3AHBMS%3AUsed_cars");
 
         System.out.println(flag);
 
