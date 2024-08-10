@@ -5,6 +5,7 @@ import com.gravel.shortcut.domain.Result;
 import com.gravel.shortcut.domain.ResultGenerator;
 import com.gravel.shortcut.service.UrlConvertService;
 import com.gravel.shortcut.utils.QRcodeUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,9 @@ public class MainController {
     @Resource
     private UrlConvertService urlConvertService;
 
+    @Value("${common.domain}")
+    private String domain;
+
     @GetMapping(value = "/qrcode", produces = MediaType.IMAGE_JPEG_VALUE)
     public BufferedImage getImage(@RequestParam String url) throws IOException, WriterException {
         return QRcodeUtils.QREncode(url);
@@ -36,17 +40,19 @@ public class MainController {
     /**
      * 传入url 返回 转换成功的url
      *
-     * @param url
+     * @param data
      * @return
      */
     @PostMapping("/convert")
-    public Result<String> convertUrl(@RequestBody String url) {
+    public Result<String> convertUrl(@RequestBody Map<String, String> data) {
+        String url = data.get("url");
         return ResultGenerator.genSuccessResult(urlConvertService.convertUrl(url));
     }
 
     @PostMapping("/revert")
-    public Result<String> revertUrl(@RequestParam String shortUrl) {
-        return ResultGenerator.genSuccessResult(urlConvertService.revertUrl(shortUrl));
+    public Result<String> revertUrl(@RequestBody Map<String, String> data) {
+        String url = data.get("url");
+        return ResultGenerator.genSuccessResult(urlConvertService.revertUrl(url));
     }
 
     /**

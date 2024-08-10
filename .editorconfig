@@ -1,0 +1,43 @@
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = false
+indent_style = space
+
+# java
+[*.java]
+indent_size = 4
+
+# js
+[*.{vue, js, ts, jsx, tsx, .js.map}]
+indent_size = 2
+
+# css
+[*.less]
+indent_size = 2
+
+# html
+[*.{html, htm}]
+indent_size = 2
+
+# sql
+[*.sql]
+indent_size = 2
+
+# config
+[*.xml]
+indent_size = 4
+
+[*.{yml, yaml, properties, json}]
+indent_size = 2
+
+[{.babelrc, .stylelintrc, jest.config, .eslintrc, .prettierrc}]
+indent_size = 2
+
+# shell
+[*.{sh, bat}]
+indent_size = 4
+
+# other
+[*.svg]
+indent_size = 2

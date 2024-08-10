@@ -25,7 +25,7 @@ public class Validator {
     }
 
     public static void main(String[] args) {
-        String t = "https://www.hnlongyun.com/mp/jump?page=pages/index/index?from=100";
+        String t = "https://jenkins.bjhub.cn/job/ODOO-GT/";
         System.out.println(checkUrl(t));
     }
 
