@@ -1,71 +1,18 @@
 # ip配置
-# nginx-server	172.18.0.100:443
-# master-server	172.18.0.101:8080
-# backup-server	172.18.0.102:8080
-# shortcut  	172.18.0.109:9527
-# redis6		172.18.0.111:6379
-# adms-ui		172.18.0.121:80
-# adms-cp		172.18.0.122:80
-# adms-mp		172.18.0.123:80
-# mysql-server	172.18.0.131:3306
+# shortcut  	9528
 
 version: "3"
 services:
-  # 主nginx容器
-  nginx-server:
-    restart: always
-    container_name: nginx-server
-    image: nginx:1.20.1
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ~/docker/nginx-server/nginx:/etc/nginx
-      - ~/docker/nginx-server/logs:/var/log/nginx
-      - ~/docker/nginx-server/cert:/usr/share/nginx/cert
-    networks:
-      my-bridge:
-        ipv4_address: 172.18.0.100
-    logging:
-      options:
-        max-size: "1g"
   # 主java容器
   shortcut:
     restart: always
     container_name: shortcut
     image: shortcut:1.0.0
     ports:
-      - 7999:9527
+      - 9528:9528
     volumes:
-      - ~/docker/shortcut/bin:/usr/shortcut/bin
+      - ~/docker/shortcut:/usr/shortcut
       - ~/docker/shortcut/logs:/usr/shortcut/logs
-    networks:
-      my-bridge:
-        ipv4_address: 172.18.0.109
     logging:
       options:
-        max-size: "1g"
-  # Redis容器
-  redis6:
-    restart: always
-    container_name: redis6
-    ports:
-      - 6379:6379
-    image: redis:6.2.4
-    volumes:
-      - ~/docker/redis6/conf/redis.conf:/usr/local/redis6/conf/redis.conf
-      - ~/docker/redis6/data:/data
-    command:
-      /bin/bash -c "redis-server /usr/local/redis6/conf/redis.conf"
-    networks:
-      my-bridge:
-        ipv4_address: 172.18.0.111
-    logging:
-      options:
-        max-size: "1g"
-# 定义网络组
-networks:
-  # 网络组名称
-  my-bridge:
-    # 生成配置运行 docker network create --subnet=172.18.0.0/16 my-bridge
-    external: true
+        max-size: "128M"

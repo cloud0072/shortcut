@@ -8,22 +8,17 @@ FROM java:8
 MAINTAINER caolei <352419394@qq.com>
 
 # 端口
-EXPOSE 9527
-
-# VOLUME 指定了临时文件目录为/tmp。
-# 其效果是在主机 /var/lib/docker 目录下创建了一个临时文件，并链接到容器的/tmp
-# VOLUME /tmp
+EXPOSE 9528
 
 # 将jar包添加到容器中并更名为app.jar
-ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
-ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
-ADD bin/shortcut-1.0.0.jar /usr/shortcut/bin/shortcut-1.0.0.jar
+COPY bin/start.sh /app/shortcut/start.sh
+COPY target/shortcut-1.0.0.jar /app/shortcut/shortcut.jar
 
 # 运行jar包
 #RUN bash -c 'touch /usr/adms-server/bin/shortcut-1.0.0.jar'
 
 # 运行参数
-ENTRYPOINT ["/bin/bash","/usr/shortcut/bin/start.sh"]
+ENTRYPOINT ["/bin/bash","/app/shortcut/start.sh"]
 
 # 打包命令
 # docker build -t shortcut:1.0.0 ~/docker/shortcut
