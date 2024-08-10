@@ -11,8 +11,8 @@ MAINTAINER caolei <352419394@qq.com>
 EXPOSE 9528
 
 # 将jar包添加到容器中并更名为app.jar
-COPY bin/start.sh /app/shortcut/start.sh
-COPY target/shortcut-1.0.0.jar /app/shortcut/shortcut.jar
+COPY bin/start.sh /app/bin/start.sh
+COPY target/shortcut-1.0.0.jar /app/bin/shortcut.jar
 
 # 运行jar包
 #RUN bash -c 'touch /usr/adms-server/bin/shortcut-1.0.0.jar'

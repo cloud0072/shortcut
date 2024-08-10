@@ -7,7 +7,7 @@ services:
   shortcut:
     restart: always
     container_name: shortcut
-    image: shortcut:1.0.0
+    image: docker.bjhub.cn/library/shortcut:1.0.1
     ports:
       - 9528:9528
     volumes:
