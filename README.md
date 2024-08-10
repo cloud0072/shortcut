@@ -32,7 +32,7 @@ mvn -Dmaven.test.skip=true clean package
 java -jar target/shortcut-0.0.1-SNAPSHOT.jar
 ```
 
-访问 http://127.0.0.1:9527/ 即可看到测试页面。
+访问 http://127.0.0.1:9528/ 即可看到测试页面。
 
 ### 自定义域名
 增加 `common.domain` 配置，实际部署的时候，可以配置短地址服务域名信息。 
@@ -87,7 +87,7 @@ java -jar target/shortcut-0.0.1-SNAPSHOT.jar
 
 #### 重定向
 
-通过 ` curl -i http://127.0.0.1:9527/7TDhjcamrAI ` 应用会匹配末端的字符串，去redis里面拿到url，然后通过状态码 302 重定向即可。
+通过 ` curl -i http://127.0.0.1:9528/7TDhjcamrAI ` 应用会匹配末端的字符串，去redis里面拿到url，然后通过状态码 302 重定向即可。
 
 #### 二维码生成
 使用 Google 的 [zxing](https://github.com/zxing/zxing) 做的二维码转换，详细代码可参考[这里](https://github.com/Alkaids/shortcut/blob/master/src/main/java/com/gravel/shortcut/utils/QRcodeUtils.java)。

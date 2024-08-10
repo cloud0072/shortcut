@@ -66,7 +66,7 @@ public class BenchmarkTest {
             RequestBody requestBody = new FormBody.Builder()
                     .add("url", "http://baidu.com" + Math.random())
                     .build();
-            String repo = post("http://127.0.0.1:9527/convert", requestBody);
+            String repo = post("http://127.0.0.1:9528/convert", requestBody);
         } catch (Exception e) {
 
         }
