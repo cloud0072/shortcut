@@ -3,9 +3,9 @@
 # spring 启动参数
 SPRING_OPTS="--spring.profiles.active=prod-bjhub --spring.config.additional-location=/app/conf/"
 # java 启动参数
-JAVA_OPTS="-server -Xmx128M -Xms256M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M -Duser.timezone=GMT+08 -Djava.security.egd=file:/dev/./urandom"
+JAVA_OPTS="-server -Xmx1024M -Xms512M -XX:MaxMetaspaceSize=1024M -XX:MetaspaceSize=512M -Duser.timezone=GMT+08 -Djava.security.egd=file:/dev/./urandom"
 # java文件
-APP_NAME=/app/bin/shortcut.jar
+APP_NAME=/app/shortcut.jar
 # 日志文件
 LOG_NAME=/app/logs/nohup.out
 
