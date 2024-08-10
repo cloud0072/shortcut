@@ -11,7 +11,7 @@ MAINTAINER caolei <352419394@qq.com>
 EXPOSE 9528
 
 # 将jar包添加到容器中并更名为app.jar
-COPY target/shortcut-1.0.0.jar /app/bin/shortcut.jar
+COPY target/shortcut-1.0.0.jar /app/shortcut.jar
 COPY bin/start.sh /app/start.sh
 
 # 运行jar包
