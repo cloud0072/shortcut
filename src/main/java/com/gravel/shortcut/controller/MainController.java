@@ -76,11 +76,12 @@ public class MainController {
 
     /**
      * 短参数
-     * @param key
+     * @param request
      * @return
      */
     @PostMapping("/decode")
-    public Result<String> decode(@RequestParam String key) {
+    public Result<String> decode(HttpServletRequest request) {
+        String key = request.getParameter("key");
         return ResultGenerator.genSuccessResult(urlConvertService.decode(key));
     }
 
