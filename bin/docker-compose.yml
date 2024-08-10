@@ -11,6 +11,7 @@ services:
     ports:
       - 9528:9528
     volumes:
+      - ~/docker/shortcut/conf/:/app/conf/
       - ~/docker/shortcut/logs/:/app/logs/
       - ~/docker/shortcut/start.sh:/app/start.sh
     logging:
