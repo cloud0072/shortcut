@@ -2,7 +2,7 @@
 # VERSION 1.0.0
 
 # 基础镜像使用java
-FROM java:8
+FROM openjdk:8
 
 # 作者
 MAINTAINER caolei <352419394@qq.com>
@@ -21,4 +21,4 @@ COPY target/shortcut-1.0.0.jar /app/shortcut/shortcut.jar
 ENTRYPOINT ["/bin/bash","/app/shortcut/start.sh"]
 
 # 打包命令
-# docker build -t shortcut:1.0.0 ~/docker/shortcut
+# docker build -t shortcut:1.0.1 .
