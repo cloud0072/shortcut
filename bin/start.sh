@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # spring 启动参数
-SPRING_OPTS="--spring.profiles.active=prod-bjhub --spring.config.additional-location=/app/bin/"
+SPRING_OPTS="--spring.profiles.active=prod-bjhub --spring.config.additional-location=/app/conf/"
 # java 启动参数
 JAVA_OPTS="-server -Xmx128M -Xms256M -XX:MaxMetaspaceSize=512M -XX:MetaspaceSize=512M -Duser.timezone=GMT+08 -Djava.security.egd=file:/dev/./urandom"
 # java文件
